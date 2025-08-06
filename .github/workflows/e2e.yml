@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    #    timeout-minutes: 10
+    timeout-minutes: 10
     runs-on: ubuntu-latest
 
     steps:
@@ -34,11 +34,25 @@ jobs:
       - name: Type Check
         run: npx tsc --noEmit
 
-      # 6) Playwright E2Eテスト実行（HTMLレポート）
+      # 6) Next.js 本番ビルド
+      - name: Next.js Build
+        run: npm run build
+
+      # 7) Next.js 本番サーバをバックグラウンドで起動
+      - name: Start Next.js Server
+        run: npm run start -- -p 3010 &
+        env:
+          PORT: 3010
+
+      # ✅ サーバが起動するまで待つ（追加！）
+      - name: Wait for server to be ready
+        run: npx wait-on http://localhost:3010
+
+      # 8) Playwright テスト実行（サーバ起動後に接続）
       - name: Run Playwright Tests
         run: npx playwright test --reporter=html
 
-      # 7) レポートのアーティファクト保存（常に実行）
+      # 9) レポートのアーティファクト保存（常に実行）
       - name: Upload Playwright Report
         uses: actions/upload-artifact@v4
         if: always()
@@ -46,7 +60,3 @@ jobs:
           name: playwright-report
           path: playwright-report
           retention-days: 7
-
-      # 8) Next.jsの本番ビルド確認（任意・品質ゲート）
-      - name: Next.js Build
-        run: npm run build
