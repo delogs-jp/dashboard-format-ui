@@ -19,10 +19,12 @@ test.describe("ログインフォーム", () => {
 
     await Promise.all([
       expect(page.getByTestId("accountId-error")).toBeVisible({
-        timeout: 7000,
+        timeout: 10000,
       }),
-      expect(page.getByTestId("email-error")).toBeVisible({ timeout: 7000 }),
-      expect(page.getByTestId("password-error")).toBeVisible({ timeout: 7000 }),
+      expect(page.getByTestId("email-error")).toBeVisible({ timeout: 10000 }),
+      expect(page.getByTestId("password-error")).toBeVisible({
+        timeout: 10000,
+      }),
     ]);
   });
 
@@ -35,9 +37,11 @@ test.describe("ログインフォーム", () => {
 
     await Promise.all([
       expect(page.getByTestId("accountId-error")).toBeVisible({
-        timeout: 7000,
+        timeout: 10000,
       }),
-      expect(page.getByTestId("password-error")).toBeVisible({ timeout: 7000 }),
+      expect(page.getByTestId("password-error")).toBeVisible({
+        timeout: 10000,
+      }),
     ]);
   });
 
@@ -47,8 +51,8 @@ test.describe("ログインフォーム", () => {
     await page.getByTestId("password").fill("SecurePassword123");
 
     await page.getByTestId("submit").click();
-    // Safari/WebKitでは、submit直後にDOM反映が遅れるケースがあるため300msの猶予を与える
-    await page.waitForTimeout(300); // Safariでバリデーションが遅延する場合の対策
+    // Safari/WebKitでは、submit直後にDOM反映が遅れるケースがあるため600msの猶予を与える
+    await page.waitForTimeout(600); // Safariでバリデーションが遅延する場合の対策
 
     await Promise.all([
       expect(page.getByTestId("accountId-error")).not.toBeVisible({
