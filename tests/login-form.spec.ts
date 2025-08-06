@@ -5,6 +5,7 @@ import { test, expect } from "@playwright/test";
 test.describe("ログインフォーム", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/");
+    await page.reload(); // ❗フォーム初期化を確実にする
   });
 
   test("フォームの初期状態", async ({ page }) => {
@@ -29,9 +30,17 @@ test.describe("ログインフォーム", () => {
   });
 
   test("バリデーションメッセージの表示（形式エラー）", async ({ page }) => {
-    await page.getByTestId("accountId").fill("ABC123ABC456ABC"); // 小文字なし
-    await page.getByTestId("email").fill("test@example.com"); // OK
-    await page.getByTestId("password").fill("securepassword123"); // 大文字なし
+    await page.getByTestId("accountId").fill("");
+    await page.getByTestId("accountId").click();
+    await page.keyboard.insertText("ABC123ABC456ABC"); // ❌小文字なし intentionally
+
+    await page.getByTestId("email").fill("");
+    await page.getByTestId("email").click();
+    await page.keyboard.insertText("test@example.com"); // OK
+
+    await page.getByTestId("password").fill("");
+    await page.getByTestId("password").click();
+    await page.keyboard.insertText("securepassword123"); // ❌大文字なし intentionally
 
     await page.getByTestId("submit").click();
 
@@ -46,13 +55,22 @@ test.describe("ログインフォーム", () => {
   });
 
   test("有効なデータでフォーム送信", async ({ page }) => {
-    await page.getByTestId("accountId").fill("CorpUserAccount123");
-    await page.getByTestId("email").fill("test@example.com");
-    await page.getByTestId("password").fill("SecurePassword123");
+    await page.getByTestId("accountId").fill(""); // 初期化
+    await page.getByTestId("accountId").click(); // フォーカス
+    await page.keyboard.insertText("ABCabc123456789"); // insertTextで入力
+
+    await page.getByTestId("email").fill(""); // 初期化
+    await page.getByTestId("email").click(); // フォーカス
+    await page.keyboard.insertText("test@example.com"); // insertTextで入力
+
+    await page.getByTestId("password").fill(""); // 初期化
+    await page.getByTestId("password").click(); // フォーカス
+    await page.keyboard.insertText("SecurePassword123"); // insertTextで入力
 
     await page.getByTestId("submit").click();
+
     // Safari/WebKitでは、submit直後にDOM反映が遅れるケースがあるため600msの猶予を与える
-    await page.waitForTimeout(600); // Safariでバリデーションが遅延する場合の対策
+    await page.waitForTimeout(800); // Safariでバリデーションが遅延する場合の対策
 
     await Promise.all([
       expect(page.getByTestId("accountId-error")).not.toBeVisible({
