@@ -18,11 +18,14 @@ export default defineConfig({
     screenshot: "only-on-failure",
     video: "retain-on-failure",
   },
-  webServer: {
-    command: `npm run dev -- -p ${PORT}`,
-    port: PORT,
-    reuseExistingServer: !process.env.CI,
-  },
+  webServer: process.env.CI
+    ? undefined // ✅ CIでは別でnpm run start済みなのでPlaywrightは起動しない
+    : {
+        command: `npm run dev -- -p ${PORT}`,
+        port: PORT,
+        reuseExistingServer: true,
+        timeout: 10000,
+      },
   projects: [
     {
       name: "Desktop Chrome",
