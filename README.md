@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Shadcn/uiで作るログイン画面のDemo
 
-## Getting Started
+[![DELOGs 記事へ](https://img.shields.io/badge/DELOGs-記事はこちら-1e90ff?logo=githubpages)](https://delogs.jp/next-js/shadcn-ui/login-form)
 
-First, run the development server:
+記事「[Shadcn/uiで作るログイン画面](https://delogs.jp/next-js/shadcn-ui/login-form)」の実践結果のリポジトリです。
+
+## 📦 Tech Stack
+
+| Tool / Lib               | Version | Purpose                          |
+| ------------------------ | :-----: | -------------------------------- |
+| **Next.js**              |  15.x   | サンプルフォーム（お問い合わせ） |
+| **TypeScript**           |   5.x   | 型安全                           |
+| **Playwright Test**      | 1.54.x  | E2E テスト                       |
+| **shadcn/ui + Tailwind** | latest  | UI コンポーネント                |
+| **GitHub Actions**       |    —    | CI / HTML レポート保存           |
+
+---
+
+## 🚀 クイックスタート
+
+### 1. セットアップ
+
+```bash
+git clone https://github.com/delogs-jp/login-form-ui.git
+cd login-form-ui
+
+# 依存ライブラリ
+npm install
+
+# Playwright ブラウザバイナリ
+npx playwright install --with-deps
+```
+
+### 2. ローカルサーバー & テスト
+
+#### UIの確認
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### e2eテスト
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+# 開発サーバーは自動起動されるので不要
+# そのままテスト実行
+npx playwright test --reporter=html
+npx playwright show-report  # レポートをブラウザで確認
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 環境によっては、`tests/login-form.spec.ts`のタイムアウト時間の調整が必要な場合があります。特に、safari回り。
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 📜 ライセンス
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+MIT
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+> サンプルのコードはご自由に利用 / 改変ください  
+> （引用時はリンクいただけるとうれしいです 🙌）
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 🙏 Credits / Author
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **DELOGs** – <https://delogs.jp>  
+  技術ブログ × Web サービスで “届ける” 技術を探求中
+- Twitter / X: [@DELOGs2506](https://x.com/DELOGs2506)
