@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema } from "@/lib/schema"; // ログインスキーマ
+import { loginSchema } from "@/lib/login/schema"; // ログインスキーマ
 import { z } from "zod";
 import {
   Form,
@@ -18,6 +19,7 @@ import { Button } from "@/components/ui/button";
 import { Eye, EyeOff } from "lucide-react";
 
 export default function LoginForm() {
+  const router = useRouter();
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -26,12 +28,12 @@ export default function LoginForm() {
       password: "",
     },
   });
-
   const [showPassword, setShowPassword] = useState(false);
 
   function onSubmit(values: z.infer<typeof loginSchema>) {
     console.log("送信データ：", values);
     // ここにAPI連携を実装予定
+    router.push("/dashboard");
   }
 
   return (

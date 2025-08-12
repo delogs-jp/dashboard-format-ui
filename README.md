@@ -1,8 +1,8 @@
-# Shadcn/uiで作るログイン画面のDemo
+# Shadcn/uiで作るログイン後の管理画面レイアウトのDemo
 
-[![DELOGs 記事へ](https://img.shields.io/badge/DELOGs-記事はこちら-1e90ff?logo=githubpages)](https://delogs.jp/next-js/shadcn-ui/login-form)
+[![DELOGs 記事へ](https://img.shields.io/badge/DELOGs-記事はこちら-1e90ff?logo=githubpages)](https://delogs.jp/next-js/shadcn-ui/dashboard-layout)
 
-記事「[Shadcn/uiで作るログイン画面](https://delogs.jp/next-js/shadcn-ui/login-form)」の実践結果のリポジトリです。
+記事「[Shadcn/uiで作るログイン後の管理画面レイアウト](https://delogs.jp/next-js/shadcn-ui/dashboard-layout)」の実践結果のリポジトリです。
 
 ## 📦 Tech Stack
 
@@ -21,8 +21,8 @@
 ### 1. セットアップ
 
 ```bash
-git clone https://github.com/delogs-jp/login-form-ui.git
-cd login-form-ui
+git clone https://github.com/delogs-jp/dashboard-layout.git
+cd dashboard-layout
 
 # 依存ライブラリ
 npm install
@@ -40,6 +40,8 @@ npm run dev
 ```
 
 #### e2eテスト
+
+この記事では、e2eテストは範囲外ですが、ログインについてテストする場合は下記を実行してください。
 
 ```bash
 # 開発サーバーは自動起動されるので不要

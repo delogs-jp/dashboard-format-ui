@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/components/sidebar/theme-provider";
 
 const notoSansJP = Noto_Sans_JP({
   subsets: ["latin"],
@@ -8,8 +9,8 @@ const notoSansJP = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  title: "ログインフォーム【DELOGs】",
-  description: "shadcn/uiを使用したログインフォーム",
+  title: "管理画面レイアウト【DELOGs】",
+  description: "shadcn/uiを使用した管理画面レイアウト",
 };
 
 export default function RootLayout({
@@ -18,9 +19,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ja" suppressHydrationWarning>
       <body className={`${notoSansJP.variable} font-sans antialiased`}>
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
