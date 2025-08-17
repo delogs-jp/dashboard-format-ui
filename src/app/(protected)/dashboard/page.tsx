@@ -1,6 +1,8 @@
+// src/app/(protected)/dashboard/page.tsx
 import type { Metadata } from "next";
-
 import { AppSidebar } from "@/components/sidebar/app-sidebar";
+import { SidebarInset } from "@/components/ui/sidebar";
+
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -10,11 +12,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 
 export const metadata: Metadata = {
   title: "ダッシュボードページ | 管理画面レイアウト【DELOGs】",
@@ -23,7 +21,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <SidebarProvider>
+    <>
       <AppSidebar />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
@@ -57,6 +55,6 @@ export default function Page() {
           <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min" />
         </div>
       </SidebarInset>
-    </SidebarProvider>
+    </>
   );
 }
