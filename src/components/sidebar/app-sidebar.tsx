@@ -1,3 +1,4 @@
+// src/components/sidebar/app-sidebar.tsx
 "use client";
 
 import * as React from "react";
@@ -16,8 +17,9 @@ import {
 } from "@/components/ui/sidebar";
 
 import { mockTeam } from "@/lib/sidebar/mock-team";
-import { mockNavMain } from "@/lib/sidebar/mock-nav-main";
 import { mockUser } from "@/lib/sidebar/mock-user";
+// ★ 単一出所に統一：ここからメニューを取る
+import { MENU } from "@/lib/sidebar/menu.schema";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
@@ -25,13 +27,19 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarHeader>
         <NavTeam team={mockTeam} />
       </SidebarHeader>
+
       <SidebarContent>
-        <NavMain items={mockNavMain} />
+        {/* a11y ランドマーク：メインメニュー */}
+        <nav aria-label="メインメニュー">
+          <NavMain items={MENU} />
+        </nav>
       </SidebarContent>
+
       <SidebarFooter>
         <ModeToggle className="ml-auto" />
         <NavUser user={mockUser} />
       </SidebarFooter>
+
       <SidebarRail />
     </Sidebar>
   );

@@ -1,6 +1,7 @@
 // src/app/(protected)/layout.tsx
 import type { Metadata } from "next";
-import { SidebarProvider } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/sidebar/app-sidebar";
+import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
@@ -15,9 +16,12 @@ export default function ProtectedLayout({
 }) {
   return (
     <SidebarProvider>
-      {/* サイドバー/ヘッダ/パンくずは“各 page.tsx”で自由に */}
-      {children}
-      <Toaster richColors closeButton />
+      <AppSidebar />
+      <SidebarInset className="min-w-0">
+        {/* サイドバー/ヘッダ/パンくずは“各 page.tsx”で自由に */}
+        {children}
+        <Toaster richColors closeButton />
+      </SidebarInset>
     </SidebarProvider>
   );
 }

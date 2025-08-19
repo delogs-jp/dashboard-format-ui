@@ -1,8 +1,8 @@
-# Shadcn/uiで作るユーザ管理UI ─ 詳細・新規・編集フォーム実装のDemo
+# サイドバーのメニューと参照中ページの同期のDemo
 
-[![DELOGs 記事へ](https://img.shields.io/badge/DELOGs-記事はこちら-1e90ff?logo=githubpages)](https://delogs.jp/next-js/shadcn-ui/user-management-ui)
+[![DELOGs 記事へ](https://img.shields.io/badge/DELOGs-記事はこちら-1e90ff?logo=githubpages)](https://delogs.jp/next-js/shadcn-ui/sidebar-active-sync)
 
-記事「[Shadcn/uiで作るユーザ管理UI ─ 詳細・新規・編集フォーム実装](https://delogs.jp/next-js/shadcn-ui/user-management-ui)」の実践結果のリポジトリです。
+記事「[サイドバーのメニューと参照中ページの同期](https://delogs.jp/next-js/shadcn-ui/sidebar-active-sync)」の実践結果のリポジトリです。
 
 ## 📦 Tech Stack
 
@@ -24,8 +24,8 @@
 ### 1. セットアップ
 
 ```bash
-git clone https://github.com/delogs-jp/user-management-ui.git
-cd user-management-ui
+git clone https://github.com/delogs-jp/sidebar-active-sync.git
+cd sidebar-active-sync
 
 # 依存ライブラリ
 npm install
