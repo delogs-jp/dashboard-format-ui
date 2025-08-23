@@ -1,3 +1,4 @@
+// src/app/page.tsx
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import LoginForm from "@/components/login/login-form"; // ログインフォームコンポーネント
