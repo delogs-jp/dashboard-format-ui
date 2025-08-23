@@ -1,8 +1,8 @@
-# サイドバーのメニューと参照中ページの同期のDemo
+# ユーザープロフィールUI ─ 情報確認・編集・パスワード変更のDemo
 
-[![DELOGs 記事へ](https://img.shields.io/badge/DELOGs-記事はこちら-1e90ff?logo=githubpages)](https://delogs.jp/next-js/shadcn-ui/sidebar-active-sync)
+[![DELOGs 記事へ](https://img.shields.io/badge/DELOGs-記事はこちら-1e90ff?logo=githubpages)](https://delogs.jp/next-js/shadcn-ui/user-profile-ui)
 
-記事「[サイドバーのメニューと参照中ページの同期](https://delogs.jp/next-js/shadcn-ui/sidebar-active-sync)」の実践結果のリポジトリです。
+記事「[ユーザープロフィールUI ─ 情報確認・編集・パスワード変更](https://delogs.jp/next-js/shadcn-ui/user-profile-ui)」の実践結果のリポジトリです。
 
 ## 📦 Tech Stack
 
@@ -24,8 +24,8 @@
 ### 1. セットアップ
 
 ```bash
-git clone https://github.com/delogs-jp/sidebar-active-sync.git
-cd sidebar-active-sync
+git clone https://github.com/delogs-jp/user-profile-ui.git
+cd user-profile-ui
 
 # 依存ライブラリ
 npm install

@@ -84,16 +84,16 @@ export function NavUser({ user }: { user: User }) {
 
             <DropdownMenuGroup>
               <DropdownMenuItem asChild>
-                {/* TODO: /account などに差し替え */}
-                <a href="#" className="flex items-center gap-2">
+                {/* 変更: /profile に差し替え */}
+                <a href="/profile" className="flex items-center gap-2">
                   <UserIcon className="size-4" />
                   ユーザー情報確認
                 </a>
               </DropdownMenuItem>
 
               <DropdownMenuItem asChild>
-                {/* TODO: /account/password などに差し替え */}
-                <a href="#" className="flex items-center gap-2">
+                {/* 変更: /profile/password に差し替え */}
+                <a href="/profile/password" className="flex items-center gap-2">
                   <KeyRound className="size-4" />
                   パスワード変更
                 </a>
