@@ -2,8 +2,9 @@
 import { z } from "zod";
 
 /** ── 追加：ロールの定数と型 ── */
-export const ROLE_CODES = ["ADMIN", "EDITOR", "VIEWER"] as const;
-export type RoleCode = (typeof ROLE_CODES)[number];
+import type { Role } from "@/lib/roles/schema";
+import { ROLE_CODES } from "@/lib/roles/mock"; // ← ロール一覧を取得
+export type RoleCode = Role["code"]; // ← ロール実体に追随
 
 /** ── 入力ルール（数字はあとから見直しやすいよう定数化） ── */
 export const NAME_MAX = 100 as const;
@@ -33,7 +34,7 @@ const passwordSchema = z
   .regex(/[a-z]/, "小文字を1文字以上含めてください。")
   .regex(/[0-9]/, "数字を1文字以上含めてください。");
 
-const roleCodeSchema = z.enum(ROLE_CODES, "ロールを選択してください"); // ← "ADMIN" | "EDITOR" | "VIEWER" になる
+const roleCodeSchema = z.enum(ROLE_CODES, "ロールを選択してください");
 
 /** ── 新規作成用：password が必須 ── */
 export const userCreateSchema = z.object({

@@ -1,4 +1,4 @@
-// src/app/(protected)/users/[displayId]/edit/client.tsx
+// src/app/(protected)/users/[displayId]/client.tsx
 "use client";
 
 import { useRouter } from "next/navigation";

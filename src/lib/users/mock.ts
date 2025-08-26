@@ -1,5 +1,6 @@
 // src/lib/users/mock.ts
 import type { UserCreateValues, UserUpdateValues, RoleCode } from "./schema";
+import { getRoleOptions } from "@/lib/roles/mock";
 
 /** モックのユーザ型（DBレコードのイメージ） */
 export type MockUser = {
@@ -18,11 +19,7 @@ export const CURRENT_ACCOUNT_CODE = "testAccount0123" as const;
 /** ロールの選択肢（セレクト用） */
 export type RoleOption = { value: RoleCode; label: string };
 
-export const mockRoleOptions: RoleOption[] = [
-  { value: "ADMIN", label: "管理者（ADMIN）" },
-  { value: "EDITOR", label: "編集者（EDITOR）" },
-  { value: "VIEWER", label: "閲覧者（VIEWER）" },
-];
+export const mockRoleOptions: RoleOption[] = getRoleOptions();
 
 /** サンプルユーザ（他アカウント混在 = フィルタ確認用） */
 export const mockUsers: MockUser[] = [

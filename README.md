@@ -1,8 +1,8 @@
-# ユーザープロフィールUI ─ 情報確認・編集・パスワード変更のDemo
+# 管理画面フォーマット作成編 #6 マスタ管理-ロール管理（UIのみ）のDemo
 
-[![DELOGs 記事へ](https://img.shields.io/badge/DELOGs-記事はこちら-1e90ff?logo=githubpages)](https://delogs.jp/next-js/shadcn-ui/user-profile-ui)
+[![DELOGs 記事へ](https://img.shields.io/badge/DELOGs-記事はこちら-1e90ff?logo=githubpages)](https://delogs.jp/next-js/shadcn-ui/format-role-ui)
 
-記事「[ユーザープロフィールUI ─ 情報確認・編集・パスワード変更](https://delogs.jp/next-js/shadcn-ui/user-profile-ui)」の実践結果のリポジトリです。
+記事「[管理画面フォーマット作成編 #6 マスタ管理-ロール管理（UIのみ）](https://delogs.jp/next-js/shadcn-ui/format-role-ui)」の実践結果のリポジトリです。
 
 ## 📦 Tech Stack
 
@@ -24,8 +24,8 @@
 ### 1. セットアップ
 
 ```bash
-git clone https://github.com/delogs-jp/user-profile-ui.git
-cd user-profile-ui
+git clone https://github.com/delogs-jp/format-role-ui.git
+cd format-role-ui
 
 # 依存ライブラリ
 npm install

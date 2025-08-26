@@ -429,6 +429,7 @@ function DisplayIdField() {
               readOnly
               aria-readonly="true"
               data-testid="displayId"
+              className="text-muted-foreground bg-muted border-none focus-visible:ring-0"
             />
           </FormControl>
           <FormDescription data-testid="displayId-desc">

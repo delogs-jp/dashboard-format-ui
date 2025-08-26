@@ -13,7 +13,9 @@ import {
   IMAGE_MAX_PX,
   IMAGE_RECOMMENDED_PX,
 } from "@/lib/users/schema";
-import { getRolePreset } from "@/lib/roles/preset";
+
+import type { Role } from "@/lib/roles/schema";
+import { getRoleBadgeProps } from "@/lib/roles/mock";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -39,7 +41,7 @@ import { Badge } from "@/components/ui/badge";
 export type ProfileInitial = {
   name: string;
   email: string; // 表示のみ
-  roleCode: "ADMIN" | "EDITOR" | "VIEWER";
+  roleCode: Role["code"]; // mock.ts のロールコードに追随
   currentAvatarUrl?: string; // 既存アバターのURL（public想定）
 };
 
@@ -89,17 +91,20 @@ export default function ProfileForm({
 
   const handleSubmit = form.handleSubmit(onSubmit);
 
-  const rolePreset = getRolePreset(initial.roleCode);
+  const badge = getRoleBadgeProps(initial.roleCode);
 
   return (
     <Form {...form}>
       <form onSubmit={handleSubmit} data-testid="profile-form">
         <Card className="w-full rounded-md">
           <CardHeader className="-mt-2 -mb-4">
+            {/*
             <RoleBadgeRow
               label={rolePreset.label}
               badgeClass={rolePreset.badgeClass}
             />
+            */}
+            <RoleBadgeRow label={badge.label} badgeStyle={badge.style} />
           </CardHeader>
 
           <CardContent className="space-y-6 pt-1">
@@ -356,14 +361,18 @@ function PasswordRow({ onNavigate }: { onNavigate: () => void }) {
 // ロール（バッジ表示のみ）
 function RoleBadgeRow({
   label,
-  badgeClass,
+  badgeStyle,
 }: {
   label: string;
-  badgeClass: string;
+  badgeStyle: React.CSSProperties;
 }) {
   return (
     <div className="flex w-full justify-end">
-      <Badge variant="outline" className={`w-[85px] px-2 py-1 ${badgeClass}`}>
+      <Badge
+        variant="outline"
+        className="w-[85px] px-2 py-1"
+        style={badgeStyle}
+      >
         {label}
       </Badge>
     </div>

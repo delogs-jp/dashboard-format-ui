@@ -111,8 +111,22 @@ export const MENU: MenuTree = [
       {
         id: "settings-masters",
         title: "マスタ管理",
-        href: "#",
+        href: "/masters",
         match: "prefix",
+        children: [
+          {
+            id: "masters-list",
+            title: "マスタ一覧",
+            href: "/masters",
+            match: "exact",
+          },
+          {
+            id: "masters-roles",
+            title: "ロール管理",
+            href: "/masters/roles",
+            match: "exact",
+          },
+        ],
       },
       {
         id: "settings-users",

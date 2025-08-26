@@ -12,18 +12,20 @@ import {
 } from "@/components/ui/tooltip";
 import { SquarePen } from "lucide-react";
 import type { MockUser } from "@/lib/users/mock";
-import type { RoleCode } from "@/lib/users/schema";
+import { getRoles } from "@/lib/roles/mock";
 
-/** 一覧のロール表示ラベル */
-export const roleLabel: Record<RoleCode, string> = {
-  ADMIN: "管理者",
-  EDITOR: "編集者",
-  VIEWER: "閲覧者",
-};
+/** ロールの表示名と色を mock から集約 */
+const roleInfoMap: Record<string, { label: string; color: string }> =
+  Object.fromEntries(
+    getRoles().map((r) => [
+      r.code,
+      { label: r.displayName, color: r.badgeColor },
+    ]),
+  );
 
 /** DataTable 側のフィルタ値型（列の filterFn と揃える） */
 export type StatusFilter = "ALL" | "ACTIVE" | "INACTIVE";
-export type RoleFilter = "ALL" | RoleCode;
+export type RoleFilter = "ALL" | string; // コードを動的取得するため string に緩める
 
 export const columns: ColumnDef<MockUser>[] = [
   {
@@ -68,10 +70,18 @@ export const columns: ColumnDef<MockUser>[] = [
     header: "ロール",
     enableResizing: false,
     size: 56,
-    cell: ({ row }) => (
-      <Badge variant="secondary">{roleLabel[row.original.roleCode]}</Badge>
-    ),
-    // ロールフィルタ（"ALL"なら素通し）
+    cell: ({ row }) => {
+      const info = roleInfoMap[row.original.roleCode];
+      const label = info?.label ?? row.original.roleCode;
+      const style = info
+        ? { backgroundColor: info.color, color: "#fff", border: "none" }
+        : undefined;
+      return (
+        <Badge variant="secondary" style={style} title={row.original.roleCode}>
+          {label}
+        </Badge>
+      );
+    }, // ロールフィルタ（"ALL"なら素通し）
     filterFn: (row, _id, value: RoleFilter) =>
       value === "ALL" ? true : row.original.roleCode === value,
   },
