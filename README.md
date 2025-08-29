@@ -1,8 +1,8 @@
-# 管理画面フォーマット作成編 #6 マスタ管理-ロール管理（UIのみ）のDemo
+# 管理画面フォーマット作成編 #7 サイドバーメニュー管理UI ─ 3層・並び順・priority可視制御までのDemo
 
-[![DELOGs 記事へ](https://img.shields.io/badge/DELOGs-記事はこちら-1e90ff?logo=githubpages)](https://delogs.jp/next-js/shadcn-ui/format-role-ui)
+[![DELOGs 記事へ](https://img.shields.io/badge/DELOGs-記事はこちら-1e90ff?logo=githubpages)](https://delogs.jp/next-js/shadcn-ui/format-menu-ui)
 
-記事「[管理画面フォーマット作成編 #6 マスタ管理-ロール管理（UIのみ）](https://delogs.jp/next-js/shadcn-ui/format-role-ui)」の実践結果のリポジトリです。
+記事「[管理画面フォーマット作成編 #7 サイドバーメニュー管理UI](https://delogs.jp/next-js/shadcn-ui/format-menu-ui)」の実践結果のリポジトリです。
 
 ## 📦 Tech Stack
 
@@ -24,8 +24,8 @@
 ### 1. セットアップ
 
 ```bash
-git clone https://github.com/delogs-jp/format-role-ui.git
-cd format-role-ui
+git clone https://github.com/delogs-jp/format-menu-ui.git
+cd format-menu-ui
 
 # 依存ライブラリ
 npm install

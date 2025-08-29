@@ -52,14 +52,17 @@ const MASTER_CARDS: MasterCard[] = [
     ready: true,
     badge: "READY",
   },
-  // 以下は将来追加していくイメージ（手動で配列に追加）
   {
     id: "categories",
-    title: "カテゴリ管理",
-    description: "コンテンツの分類カテゴリを管理します（Coming soon）。",
+    title: "メニュー管理",
+    description:
+      "管理画面のサイドバーに表示するメニューを管理します。表示順や権限設定など。",
+    href: "/masters/menus",
     icon: Tags,
-    ready: false,
+    ready: true,
+    badge: "READY",
   },
+  // 以下は将来追加していくイメージ（手動で配列に追加）
   {
     id: "datasets",
     title: "データセット管理",

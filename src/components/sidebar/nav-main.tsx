@@ -89,7 +89,8 @@ function TopNode({
           className="data-[active=true]:bg-muted data-[active=true]:font-semibold"
         >
           <NavLink
-            href={node.href}
+            //href={node.href}
+            href={node.href ?? "#"}
             active={isActive(node.id)}
             ariaCurrent={ariaCurrentFor(node.id)}
           >
@@ -167,7 +168,8 @@ function SubNode({
           className="data-[active=true]:bg-muted data-[active=true]:font-semibold"
         >
           <NavLink
-            href={node.href}
+            //href={node.href}
+            href={node.href ?? "#"}
             active={isActive(node.id)}
             ariaCurrent={ariaCurrentFor(node.id)}
           >
@@ -209,7 +211,8 @@ function SubNode({
                   className="data-[active=true]:bg-muted data-[active=true]:font-semibold"
                 >
                   <NavLink
-                    href={gchild.href}
+                    //href={gchild.href}
+                    href={gchild.href ?? "#"}
                     active={isActive(gchild.id)}
                     ariaCurrent={ariaCurrentFor(gchild.id)}
                   >

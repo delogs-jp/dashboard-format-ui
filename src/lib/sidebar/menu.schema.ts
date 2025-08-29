@@ -1,9 +1,9 @@
 /**
  * src/lib/sidebar/menu.schema.ts
- * 「型」と「メニュー定義」を1ファイルに集約（単一出所）
  */
+
+import { z } from "zod";
 import type { LucideIcon } from "lucide-react";
-import { SquareTerminal, BookOpen, Settings2 } from "lucide-react";
 
 /** どのルールでURL一致を判定するか */
 export type MatchMode = "exact" | "prefix" | "regex";
@@ -15,7 +15,7 @@ export type MenuNode = {
   /** ラベル（サイドバーに表示） */
   title: string;
   /** 対応するURL（絶対パス。トレーリングスラッシュは付けない） */
-  href: string;
+  href?: string;
   /** アイコン（任意） */
   icon?: LucideIcon;
   /**
@@ -36,114 +36,160 @@ export type MenuNode = {
 /** ツリー全体 */
 export type MenuTree = MenuNode[];
 
-/**
- * 最小のメニュー定義
- * - ダッシュボード（/dashboard）
- * - 設定（/settings）配下に「ユーザ管理（/users）」グループ
- *   - 一覧（/users）… exact
- *   - 新規（/users/new）… exact
- *
- * 動的URL（/users/[displayId]）は子に列挙しません。
- * 親（/users）が "prefix" で受け止めます。
- */
-export const MENU: MenuTree = [
-  {
-    id: "dashboard",
-    title: "ダッシュボード",
-    href: "",
-    icon: SquareTerminal,
-    match: "prefix", // /dashboard 配下すべてを受け持つ
-    children: [
-      {
-        id: "dashboard-overview",
-        title: "全体進捗",
-        href: "/dashboard",
-        match: "exact",
-      },
-      {
-        id: "dashboard-my-project",
-        title: "Myプロジェクト",
-        href: "#",
-        match: "prefix",
-      },
-      {
-        id: "dashboard-my-task",
-        title: "Myタスク",
-        href: "#",
-        match: "prefix",
-      },
-    ],
-  },
-  {
-    id: "docs",
-    title: "ドキュメント",
-    href: "",
-    icon: BookOpen,
-    match: "prefix",
-    children: [
-      {
-        id: "docs-tutorial",
-        title: "チュートリアル",
-        href: "#",
-        match: "prefix",
-      },
-      {
-        id: "docs-changelog",
-        title: "更新履歴",
-        href: "#",
-        match: "prefix",
-      },
-    ],
-  },
-  {
-    id: "settings",
-    title: "設定",
-    href: "",
-    icon: Settings2,
-    match: "prefix",
-    children: [
-      {
-        id: "settings-projects",
-        title: "プロジェクト管理",
-        href: "#",
-        match: "prefix",
-      },
-      {
-        id: "settings-masters",
-        title: "マスタ管理",
-        href: "/masters",
-        match: "prefix",
-        children: [
-          {
-            id: "masters-list",
-            title: "マスタ一覧",
-            href: "/masters",
-            match: "exact",
-          },
-          {
-            id: "masters-roles",
-            title: "ロール管理",
-            href: "/masters/roles",
-            match: "exact",
-          },
-        ],
-      },
-      {
-        id: "settings-users",
-        title: "ユーザ管理",
-        href: "/users",
-        match: "prefix", // /users 配下を親で受ける（動的URL対応）
-        children: [
-          { id: "users-list", title: "一覧", href: "/users", match: "exact" },
-          {
-            id: "users-new",
-            title: "新規登録",
-            href: "/users/new",
-            match: "exact",
-          },
-          // /users/[displayId] は列挙しない → 親 "/users" が最長一致で勝つ
-        ],
-      },
-    ],
-  },
-];
+/** 編集用の1レコード（UI専用） */
+export const menuRecordSchema = z
+  .object({
+    displayId: z.string().min(1),
+    parentId: z.string().nullable(),
+    order: z.number().int().nonnegative(),
+    title: z.string().min(1),
+    href: z
+      .string()
+      .regex(/^\/(?!.*\/$).*/, "先頭は /、末尾スラッシュは不可")
+      .optional(),
+    iconName: z.string().optional(),
+    match: z.enum(["exact", "prefix", "regex"]).default("prefix"),
+    pattern: z.string().optional(),
+    minPriority: z.number().int().positive().optional(),
+    isSection: z.boolean().default(false),
+    isActive: z.boolean(),
+  })
+  .superRefine((val, ctx) => {
+    // 見出しノードのときはリンク関連を禁止
+    if (val.isSection) {
+      if (val.href) {
+        ctx.addIssue({ code: "custom", message: "セクションではhref不要です" });
+      }
+      if (val.pattern) {
+        ctx.addIssue({
+          code: "custom",
+          message: "セクションではpattern不要です",
+        });
+      }
+    }
+
+    // regex指定時は pattern 必須
+    if (val.match === "regex" && !val.pattern) {
+      ctx.addIssue({ code: "custom", message: "regex指定時はpattern必須です" });
+    }
+
+    // regex以外では pattern を禁止
+    if (val.match !== "regex" && val.pattern) {
+      ctx.addIssue({ code: "custom", message: "regex以外でpattern不要です" });
+    }
+  });
+
+export type MenuRecord = z.infer<typeof menuRecordSchema>;
+
+// Create: 新規登録時に入力させる項目だけを許容（displayId/order は自動）
+export const menuCreateSchema = z
+  .object({
+    parentId: z.string().nullable(),
+    title: z.string().min(1, "タイトルは必須です"),
+    isSection: z.boolean().default(false),
+    href: z
+      .string()
+      .regex(/^\/(?!.*\/$).*/, "先頭は /、末尾スラッシュは不可")
+      .optional(),
+    match: z.enum(["exact", "prefix", "regex"]).default("prefix"),
+    // 「詳細設定」想定：regex のときだけ pattern を入れられる
+    pattern: z.string().optional(),
+    iconName: z.string().optional(),
+    // 未選択＝全員表示。入力では string/number/空文字を受けて number | undefined に正規化
+    minPriority: z
+      .union([z.string(), z.number()])
+      .optional()
+      .transform((v) => (v === "" || v === undefined ? undefined : Number(v))),
+    isActive: z.boolean().default(true),
+  })
+  .superRefine((val, ctx) => {
+    // ★ 見出しではリンク系禁止（既存）
+    if (val.isSection) {
+      if (val.href)
+        ctx.addIssue({
+          code: "custom",
+          message: "見出しでは href は不要です",
+          path: ["href"],
+        });
+      if (val.pattern)
+        ctx.addIssue({
+          code: "custom",
+          message: "見出しでは pattern は不要です",
+          path: ["pattern"],
+        });
+    }
+    // ★ 見出しOFFのときは親が必須（= (ルート) は候補に出さない & null禁止）
+    if (!val.isSection && !val.parentId) {
+      ctx.addIssue({
+        code: "custom",
+        message: "親メニューを選択してください",
+        path: ["parentId"],
+      });
+    }
+    // regex の相関（既存）
+    if (!val.isSection && val.match === "regex" && !val.pattern) {
+      ctx.addIssue({
+        code: "custom",
+        message: "regex 指定時は pattern が必要です",
+        path: ["pattern"],
+      });
+    }
+    if (val.match !== "regex" && val.pattern) {
+      ctx.addIssue({
+        code: "custom",
+        message: "regex 以外では pattern は不要です",
+        path: ["pattern"],
+      });
+    }
+  });
+
+export type MenuCreateInput = z.input<typeof menuCreateSchema>;
+export type MenuCreateValues = z.output<typeof menuCreateSchema>;
+
+// Update: 表示ID／order を含む（編集章で使用予定）
+export const menuUpdateSchema = menuCreateSchema
+  .extend({
+    displayId: z.string().min(1),
+    order: z.number().int().nonnegative(),
+  })
+  .superRefine((val, ctx) => {
+    // Create と同じ相関を維持
+    if (val.isSection) {
+      if (val.href)
+        ctx.addIssue({
+          code: "custom",
+          message: "見出しでは href は不要です",
+          path: ["href"],
+        });
+      if (val.pattern)
+        ctx.addIssue({
+          code: "custom",
+          message: "見出しでは pattern は不要です",
+          path: ["pattern"],
+        });
+    }
+    if (!val.isSection && !val.parentId) {
+      ctx.addIssue({
+        code: "custom",
+        message: "親メニューを選択してください",
+        path: ["parentId"],
+      });
+    }
+    if (!val.isSection && val.match === "regex" && !val.pattern) {
+      ctx.addIssue({
+        code: "custom",
+        message: "regex 指定時は pattern が必要です",
+        path: ["pattern"],
+      });
+    }
+    if (val.match !== "regex" && val.pattern) {
+      ctx.addIssue({
+        code: "custom",
+        message: "regex 以外では pattern は不要です",
+        path: ["pattern"],
+      });
+    }
+  });
+
+export type MenuUpdateInput = z.input<typeof menuUpdateSchema>;
+export type MenuUpdateValues = z.output<typeof menuUpdateSchema>;

@@ -28,7 +28,7 @@ export default function ProfileClient() {
           description: `氏名: ${values.name}${values.avatarFile ? " / 画像選択あり" : ""}`,
           duration: 3500,
         });
-        // 任意で戻すなら：router.push("/profile");
+        //任意で戻すなら：router.push("/profile");
       }}
       onCancel={() => history.back()}
       onNavigateEmail={() => router.push("/profile/email")}

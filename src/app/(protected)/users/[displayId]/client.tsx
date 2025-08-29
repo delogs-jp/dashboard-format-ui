@@ -30,7 +30,7 @@ export default function EditUserClient({
           description: `ID: ${values.displayId} / ${values.email} / ロール: ${values.roleCode} / 有効: ${values.isActive ? "ON" : "OFF"}`,
           duration: 3500,
         });
-        // 例：router.push(`/users/${values.displayId}`) などは一覧/詳細実装後に
+        router.push("/users");
       }}
       onCancel={() => history.back()}
       onDelete={() => {
