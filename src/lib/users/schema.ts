@@ -22,8 +22,8 @@ const nameSchema = z
   .min(1, "氏名を入力してください")
   .max(NAME_MAX, `${NAME_MAX}文字以内で入力してください`);
 
-// Zod v4 形式：z.email()
-const emailSchema = z.email("メールアドレスの形式が正しくありません");
+//  変更: 既存の emailSchema を export へ昇格
+export const emailSchema = z.email("メールアドレスの形式が正しくありません");
 
 // パスワード用
 const passwordSchema = z
@@ -91,6 +91,25 @@ export const emailChangeSchema = (currentEmail: string) =>
 export const passwordChangeSchema = z.object({
   currentPassword: z.string().min(1, "現在のパスワードを入力してください"),
   newPassword: passwordSchema, // 共通化したものを利用,
+});
+
+// 追加: 共通で使い回すためエクスポート
+export const accountIdSchema = z
+  .string()
+  .min(15, "アカウントIDは15文字以上で入力してください。")
+  .regex(/[A-Z]/, "大文字を1文字以上含めてください。")
+  .regex(/[a-z]/, "小文字を1文字以上含めてください。")
+  .regex(/[0-9]/, "数字を1文字以上含めてください。");
+
+export const loginSchema = z.object({
+  accountId: accountIdSchema,
+  email: z.email("有効なメールアドレスを入力してください。"),
+  password: z
+    .string()
+    .min(15, "パスワードは15文字以上で入力してください。")
+    .regex(/[A-Z]/, "大文字を1文字以上含めてください。")
+    .regex(/[a-z]/, "小文字を1文字以上含めてください。")
+    .regex(/[0-9]/, "数字を1文字以上含めてください。"),
 });
 
 /** ── Zod から型を派生（z.infer を使う） ── */

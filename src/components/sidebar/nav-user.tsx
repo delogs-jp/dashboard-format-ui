@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 import {
   Bell,
   ChevronsUpDown,
@@ -85,26 +85,29 @@ export function NavUser({ user }: { user: User }) {
             <DropdownMenuGroup>
               <DropdownMenuItem asChild>
                 {/* 変更: /profile に差し替え */}
-                <a href="/profile" className="flex items-center gap-2">
+                <Link href="/profile" className="flex items-center gap-2">
                   <UserIcon className="size-4" />
                   ユーザー情報確認
-                </a>
+                </Link>
               </DropdownMenuItem>
 
               <DropdownMenuItem asChild>
                 {/* 変更: /profile/password に差し替え */}
-                <a href="/profile/password" className="flex items-center gap-2">
+                <Link
+                  href="/profile/password"
+                  className="flex items-center gap-2"
+                >
                   <KeyRound className="size-4" />
                   パスワード変更
-                </a>
+                </Link>
               </DropdownMenuItem>
 
               <DropdownMenuItem asChild>
                 {/* TODO: /notifications に差し替え */}
-                <a href="#" className="flex items-center gap-2">
+                <Link href="#" className="flex items-center gap-2">
                   <Bell className="size-4" />
                   通知
-                </a>
+                </Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
 

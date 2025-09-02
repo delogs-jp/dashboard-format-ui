@@ -1,8 +1,8 @@
-# 管理画面フォーマット作成編 #7 サイドバーメニュー管理UI ─ 3層・並び順・priority可視制御までのDemo
+# 管理画面フォーマット制作編 #8 ログイン後404ページ + ログイン前のパスワード忘れ導線UIのDemo
 
-[![DELOGs 記事へ](https://img.shields.io/badge/DELOGs-記事はこちら-1e90ff?logo=githubpages)](https://delogs.jp/next-js/shadcn-ui/format-menu-ui)
+[![DELOGs 記事へ](https://img.shields.io/badge/DELOGs-記事はこちら-1e90ff?logo=githubpages)](https://delogs.jp/next-js/shadcn-ui/format-404-password-forgot)
 
-記事「[管理画面フォーマット作成編 #7 サイドバーメニュー管理UI](https://delogs.jp/next-js/shadcn-ui/format-menu-ui)」の実践結果のリポジトリです。
+記事「[管理画面フォーマット制作編 #8 ログイン後404ページ + ログイン前のパスワード忘れ導線UI](https://delogs.jp/next-js/shadcn-ui/format-404-password-forgot)」の実践結果のリポジトリです。
 
 ## 📦 Tech Stack
 
@@ -24,7 +24,7 @@
 ### 1. セットアップ
 
 ```bash
-git clone https://github.com/delogs-jp/format-menu-ui.git
+git clone https://github.com/delogs-jp/format-404-password-forgot.git
 cd format-menu-ui
 
 # 依存ライブラリ

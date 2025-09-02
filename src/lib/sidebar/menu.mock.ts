@@ -197,6 +197,20 @@ export const INITIAL_MENU_RECORDS: MenuRecord[] = [
     isSection: false,
     isActive: true,
   },
+  // 追加
+  {
+    displayId: "M00000017",
+    parentId: "M00000011",
+    order: 1,
+    title: "パスワード再発行",
+    href: "/users/password-request",
+    iconName: undefined,
+    match: "exact",
+    pattern: undefined,
+    minPriority: undefined,
+    isSection: false,
+    isActive: true,
+  },
 ];
 
 // ストア本体とCRUD・並び替え・参照ユーティリティ
