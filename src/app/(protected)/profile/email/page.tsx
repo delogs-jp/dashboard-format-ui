@@ -13,7 +13,7 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 import Client from "./client";
 
 export const metadata: Metadata = {
-  title: "メールアドレス変更 | 管理画面レイアウト【DELOGs】",
+  title: "メールアドレス変更",
   description:
     "本人のメールアドレス変更（認証メール送信）UI。確認URLで本人確認後に切り替え。",
 };

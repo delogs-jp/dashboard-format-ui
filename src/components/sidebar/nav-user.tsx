@@ -115,10 +115,13 @@ export function NavUser({ user }: { user: User }) {
 
             <DropdownMenuItem asChild>
               {/* TODO: /api/logout などにPOST。UIだけなら href="#" でOK */}
-              <a href="#" className="text-destructive flex items-center gap-2">
+              <Link
+                href="/"
+                className="text-destructive flex items-center gap-2"
+              >
                 <LogOut className="size-4" />
                 ログアウト
-              </a>
+              </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

@@ -1,8 +1,8 @@
-# 管理画面フォーマット制作編 #8 ログイン後404ページ + ログイン前のパスワード忘れ導線UIのDemo
+# 管理画面フォーマットUIのみ版【DELOGs】
 
-[![DELOGs 記事へ](https://img.shields.io/badge/DELOGs-記事はこちら-1e90ff?logo=githubpages)](https://delogs.jp/next-js/shadcn-ui/format-404-password-forgot)
+[![DELOGs 記事へ](https://img.shields.io/badge/DELOGs-記事はこちら-1e90ff?logo=githubpages)](https://delogs.jp/next-js/shadcn-ui/dashboard-format-ui-demo)
 
-記事「[管理画面フォーマット制作編 #8 ログイン後404ページ + ログイン前のパスワード忘れ導線UI](https://delogs.jp/next-js/shadcn-ui/format-404-password-forgot)」の実践結果のリポジトリです。
+記事「[管理画面フォーマット制作編 #9 Shadcn/uiで作る管理画面フォーマット ─ デモ公開とカスタマイズ方法](https://delogs.jp/next-js/shadcn-ui/dashboard-format-ui-demo)」の実践結果のリポジトリです。管理画面フォーマット制作編の完成版です。
 
 ## 📦 Tech Stack
 
@@ -24,13 +24,13 @@
 ### 1. セットアップ
 
 ```bash
-git clone https://github.com/delogs-jp/format-404-password-forgot.git
-cd format-menu-ui
+git clone https://github.com/delogs-jp/dashboard-format-ui.git
+cd dashboard-format-ui
 
 # 依存ライブラリ
 npm install
 
-# Playwright ブラウザバイナリ
+# Playwright ブラウザバイナリ(E2Eテスト用)
 npx playwright install --with-deps
 ```
 
@@ -44,7 +44,8 @@ npm run dev
 
 #### e2eテスト
 
-この記事では、e2eテストは範囲外ですが、ログインについてテストする場合は下記を実行してください。
+この記事では、e2eテストは範囲外ですが、ログイン画面についてテストする場合は下記を実行してください。
+ログイン画面のみをe2eテストの対象にしています。
 
 ```bash
 # 開発サーバーは自動起動されるので不要

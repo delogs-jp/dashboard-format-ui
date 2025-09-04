@@ -1,13 +1,7 @@
 // src/app/(protected)/layout.tsx
-import type { Metadata } from "next";
 import { AppSidebar } from "@/components/sidebar/app-sidebar";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/sonner";
-
-export const metadata: Metadata = {
-  title: "管理画面 | DELOGs",
-  description: "ログイン後の共通レイアウト",
-};
 
 export default function ProtectedLayout({
   children,

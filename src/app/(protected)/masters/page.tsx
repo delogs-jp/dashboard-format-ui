@@ -27,7 +27,7 @@ import { cn } from "@/lib/utils"; // あれば（なければ className を直�
 import { ShieldCheck, Database, Tags, FolderCog } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "マスタ管理 | 管理画面レイアウト【DELOGs】",
+  title: "マスタ管理",
   description: "各種マスターテーブルの編集入口ページ",
 };
 

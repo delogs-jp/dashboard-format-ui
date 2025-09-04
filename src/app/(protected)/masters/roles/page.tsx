@@ -18,7 +18,7 @@ import RolesDataTable from "./data-table";
 import { getRoles } from "@/lib/roles/mock";
 
 export const metadata: Metadata = {
-  title: "ロール一覧 | 管理画面レイアウト【DELOGs】",
+  title: "ロール一覧",
   description:
     "ロール一覧（色・種別・権限）をshadcn/ui+@tanstack/react-tableで表示",
 };
@@ -50,7 +50,7 @@ export default async function Page() {
         </div>
       </header>
 
-      <div className="max-w-full p-4 pt-0">
+      <div className="container p-4 pt-0">
         <RolesDataTable
           columns={columns}
           data={roles}

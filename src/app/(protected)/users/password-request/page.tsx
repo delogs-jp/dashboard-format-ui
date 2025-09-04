@@ -51,7 +51,7 @@ export default function Page() {
         </div>
       </header>
 
-      <div className="max-w-full p-4 pt-0">
+      <div className="container p-4 pt-0">
         <DataTable
           columns={columns}
           data={rows}

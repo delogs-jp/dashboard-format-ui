@@ -13,7 +13,7 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 import Client from "./client";
 
 export const metadata: Metadata = {
-  title: "パスワード変更 | 管理画面レイアウト【DELOGs】",
+  title: "パスワード変更",
   description:
     "本人のパスワード変更UI（現在のパスワードと新しいパスワードのみ）。",
 };

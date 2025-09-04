@@ -17,7 +17,7 @@ import type { ParentOption, IconOption } from "@/components/menus/menu-form";
 import { ICONS } from "@/lib/sidebar/icons.map";
 
 export const metadata: Metadata = {
-  title: "メニュー新規登録 | 管理画面レイアウト【DELOGs】",
+  title: "メニュー新規登録",
   description: "サイドバーメニューを新規作成（UIのみ：モックストアへ保存）",
 };
 

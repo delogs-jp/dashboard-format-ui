@@ -18,7 +18,7 @@ import { getRoleById } from "@/lib/roles/mock";
 import type { RoleUpdateValues } from "@/lib/roles/schema";
 
 export const metadata: Metadata = {
-  title: "ロール編集 | 管理画面レイアウト【DELOGs】",
+  title: "ロール編集",
   description: "ロールの確認・更新・削除（UIのみ・固定ロールは一部制限）",
 };
 

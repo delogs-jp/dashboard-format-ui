@@ -21,7 +21,7 @@ import {
 } from "@/lib/users/mock";
 
 export const metadata: Metadata = {
-  title: "ユーザ一覧 | 管理画面レイアウト【DELOGs】",
+  title: "ユーザ一覧",
   description:
     "Data table（shadcn/ui + @tanstack/react-table）でユーザ一覧を表示",
 };
@@ -55,7 +55,7 @@ export default async function Page() {
         </div>
       </header>
 
-      <div className="max-w-full p-4 pt-0">
+      <div className="container p-4 pt-0">
         <DataTable
           columns={columns}
           data={users}

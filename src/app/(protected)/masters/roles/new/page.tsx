@@ -17,7 +17,7 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 import Client from "./client";
 
 export const metadata: Metadata = {
-  title: "ロール新規登録 | 管理画面レイアウト【DELOGs】",
+  title: "ロール新規登録",
   description:
     "共通フォーム（shadcn/ui + React Hook Form + Zod）でロールを新規作成（UIのみ）",
 };

@@ -18,7 +18,7 @@ import { mockRoleOptions } from "@/lib/users/mock";
 const ACCOUNT_CODE = "testAccount0123"; // UIのみの仮固定
 
 export const metadata: Metadata = {
-  title: "ユーザ新規登録 | 管理画面レイアウト【DELOGs】",
+  title: "ユーザ新規登録",
   description:
     "共通フォーム（shadcn/ui + React Hook Form + Zod）でユーザを新規作成",
 };

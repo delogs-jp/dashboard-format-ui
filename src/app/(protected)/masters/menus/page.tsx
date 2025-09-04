@@ -18,7 +18,7 @@ import { columns } from "./columns";
 import { getMenus } from "@/lib/sidebar/menu.mock";
 
 export const metadata: Metadata = {
-  title: "メニュー一覧 | 管理画面レイアウト【DELOGs】",
+  title: "メニュー一覧",
   description:
     "サイドバーメニューの一覧。階層表示と兄弟間の↑↓入れ替えに対応（UIのみ、モックストア連携）。",
 };
@@ -50,7 +50,7 @@ export default async function Page() {
         </div>
       </header>
 
-      <div className="max-w-full p-4 pt-0">
+      <div className="container p-4 pt-0">
         <MenusDataTable
           columns={columns}
           data={menus}

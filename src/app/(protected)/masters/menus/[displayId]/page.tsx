@@ -22,7 +22,7 @@ type Props = {
 };
 
 export const metadata: Metadata = {
-  title: "メニュー編集 | 管理画面レイアウト【DELOGs】",
+  title: "メニュー編集",
   description: "サイドバーメニューを編集（UIのみ：モックストアへ保存）",
 };
 

@@ -6,6 +6,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export const metadata: Metadata = {
   title: "パスワード再発行依頼",
+  description:
+    "パスワードの再発行依頼行います。管理者へ依頼内容が送信されます。管理者がパスワード再発行するとメールアドレスへ内容が送信されます。",
 };
 
 export default function PasswordForgotPage() {
@@ -20,7 +22,6 @@ export default function PasswordForgotPage() {
               alt="サイトロゴ"
               width={160}
               height={40}
-              priority
               className="h-[40px] w-[160px] dark:hidden"
             />
 
@@ -30,7 +31,6 @@ export default function PasswordForgotPage() {
               alt="サイトロゴ（ダーク）"
               width={160}
               height={40}
-              priority
               className="hidden h-[40px] w-[160px] dark:block"
             />
 

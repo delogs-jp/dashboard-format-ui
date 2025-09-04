@@ -23,9 +23,9 @@ export default function LoginForm() {
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      accountId: "",
-      email: "",
-      password: "",
+      accountId: "CORP000123456xx",
+      email: "your@sample.com",
+      password: "XXXabc0123456789",
     },
   });
   const [showPassword, setShowPassword] = useState(false);
@@ -51,7 +51,7 @@ export default function LoginForm() {
               <FormControl>
                 <Input
                   data-testid="accountId"
-                  placeholder="CORP000123456"
+                  placeholder="CoRP000123456"
                   autoFocus
                   {...field}
                 />

@@ -14,7 +14,7 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 import Client from "./client";
 
 export const metadata: Metadata = {
-  title: "プロフィール | 管理画面レイアウト【DELOGs】",
+  title: "プロフィール",
   description:
     "ユーザのプロフィール（氏名・アバター）を編集し、メール／パスワード変更画面へ遷移",
 };

@@ -22,7 +22,7 @@ import {
 } from "@/lib/users/mock";
 
 export const metadata: Metadata = {
-  title: "ユーザ編集 | 管理画面レイアウト【DELOGs】",
+  title: "ユーザ編集",
   description: "共通フォーム（shadcn/ui + RHF + Zod）でユーザ情報を編集",
 };
 
